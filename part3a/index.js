@@ -40,6 +40,52 @@ app.get('/api/persons', (request, response) => {
   response.json(persons);
 });
 
+app.post('/api/persons', (request, response) => {
+  const body = request.body;
+
+  if (!body.name || !body.number) {
+    return response.status(400).json({
+      error: 'missing name or number'
+    });
+  }
+
+  const person = {
+    id: persons.length > 0 ? Math.max(...persons.map(p => p.id)) + 1 : 1,
+    name: body.name,
+    number: body.number
+  };
+
+  persons.push(person);
+  response.json(person);
+});
+
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id);
+  persons = persons.filter(person => person.id !== id);
+
+  response.status(204).end();
+});
+
+app.put('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id);
+  const body = request.body;
+
+  if (!body.name || !body.number) {
+    return response.status(400).json({
+      error: 'missing name or number'
+    });
+  }
+
+  const person = persons.find(p => p.id === id);
+  if (person) {
+    person.name = body.name;
+    person.number = body.number;
+    response.json(person);
+  } else {
+    response.status(404).end();
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
