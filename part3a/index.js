@@ -6,9 +6,9 @@ app.use(express.json());
 
 let persons = [
   {
+    id: '0',
     name: 'Sharaf',
     number: '040-123456',
-    id: '0',
   },  
   {
     id: '1',
@@ -17,19 +17,19 @@ let persons = [
   },
 
   {
+    id: '2',
     name: 'Yousra',
     number: '39-44-5323523',
-    id: '2',
   },
   {
+    id: '3',
     name: 'Adel Imam',
     number: '12-43-234345',
-    id: '3',
   },
   {
+    id: '4',
     name: 'Mona Zaki',
     number: '39-23-6423122',
-    id: '4',
   },
   {
     id: '5',
@@ -64,7 +64,7 @@ app.post('/api/persons', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id);
   persons = persons.filter(person => person.id !== id);
-
+  
   response.status(204).end();
 });
 
