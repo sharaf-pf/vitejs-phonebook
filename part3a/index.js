@@ -9,7 +9,13 @@ let persons = [
     name: 'Sharaf',
     number: '040-123456',
     id: '0',
+  },  
+  {
+    id: '1',
+    name: 'javascript:alert(1)',
+    number: '01010',
   },
+
   {
     name: 'Yousra',
     number: '39-44-5323523',
@@ -26,15 +32,10 @@ let persons = [
     id: '4',
   },
   {
-    id: '3a24',
+    id: '5',
     name: 'Mohamed Ramadan',
     number: '0101010',
-  },
-  {
-    id: '0fd0',
-    name: 'javascript:alert(1)',
-    number: '01010',
-  },
+  }
 ];
 
 app.get('/api/persons', (request, response) => {
