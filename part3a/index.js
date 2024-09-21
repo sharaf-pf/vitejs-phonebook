@@ -6,45 +6,24 @@ app.use(cors());
 app.use(express.json());
 
 let persons = [
-  {
-    id: '0',
-    name: 'Sharaf',
-    number: '040-123456',
-  },  
-  {
-    id: '1',
-    name: 'javascript:alert(1)',
-    number: '01010',
-  },
-  {
-    id: '2',
-    name: 'Yousra',
-    number: '39-44-5323523',
-  },
-  {
-    id: '3',
-    name: 'Adel Imam',
-    number: '12-43-234345',
-  },
-  {
-    id: '4',
-    name: 'Mona Zaki',
-    number: '39-23-6423122',
-  },
-  {
-    id: '5',
-    name: 'Mohamed Ramadan',
-    number: '0101010',
-  }
+  { id: 0, name: 'Sharaf', number: '040-123456' },
+  { id: 1, name: 'javascript:alert(1)', number: '01010' },
+  { id: 2, name: 'Yousra', number: '39-44-5323523' },
+  { id: 3, name: 'Adel Imam', number: '12-43-234345' },
+  { id: 4, name: 'Mona Zaki', number: '39-23-6423122' },
 ];
+
+app.get('/', (req, res) => {
+  res.json('Phonebook API');
+});
 
 app.get('/api/persons', (request, response) => {
   response.json(persons);
 });
 
 app.get('/api/persons/:id', (request, response) => {
-  const id = request.params.id;
-  const person = persons.find(p => p.id == id);
+  const id = Number(request.params.id);
+  const person = persons.find(p => p.id === id);
   
   if (person) {
     response.json(person);
