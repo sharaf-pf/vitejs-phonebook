@@ -14,7 +14,7 @@ let persons = [
 ];
 
 app.get('/', (req, res) => {
-  res.json('Phonebook API');
+  res.json('Laila Khashba');
 });
 
 app.get('/api/persons', (request, response) => {
